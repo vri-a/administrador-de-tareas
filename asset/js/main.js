@@ -1,4 +1,5 @@
 let newTask = document.getElementById("newTask");
+let task = document.getElementById("task");
 let text;
 let inputId = 0;
 let addTaskBtn = document.getElementById("addTaskBtn");
@@ -6,17 +7,23 @@ let inputs = document.querySelectorAll("input[type='checkbox']");;
 let tasks = 0;
 //let pendingTasks = 0;
 let completedTasks = 0;
-addTaskBtn.addEventListener("click", () => {
+addTaskBtn.addEventListener("click", validText);
+
+function validText() {
     text = newTask.value;
-    if(text != "") {
+    if(text.trim().length > 0) {
         addTask();
     }
-
-    } 
+}
+newTask.addEventListener('keyup', (e) => {
+    
+    if(e.code == 'Enter') {
+        validText();
+    }
+}
 );
 
 function addTask() {
-    let task = document.getElementById("task");
     let div = document.createElement("div");
     task.appendChild(div);
     div.innerHTML = `<input type="checkbox" id="${inputId}" onclick="infoTask()"><label for="${inputId}">${text}</label><img src="https://img.icons8.com/windows/1x/trash.png" alt="" id="img${inputId}" onclick="removeTask(event)">`
@@ -54,7 +61,6 @@ function infoTask() {
 }
 
 function removeTask(event) {
-    let task = document.getElementById("task");
     let elem = document.getElementById(event.target.id)
     task.removeChild(elem.parentNode); 
     tasks--;
