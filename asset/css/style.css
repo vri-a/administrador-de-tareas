@@ -1,188 +1,179 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap");
 
 :root {
-    --primary-color: #DC143C;
+  --primary-color: #dc143c;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+body {
+  background-color: var(--primary-color);
+}
+
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column; 
-    align-items: center;
-    height: 100vh;
-    width: 100%;
-    background-color: var(--primary-color);
-    color: #FFF;
-    font-family: 'Poppins', sans-serif;
-    padding: 1em;
-    padding-top: 3em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  padding-top: 3em;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
 }
 
 .container__title {
-    width: 100%;
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 1em;
-    font-weight: 600;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 0.8em;
+}
+
+#delete {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 .5em;
+}
+
+#deleteAllLabel::before {
+  border: 1px solid #fff;
+}
+
+input[type="checkbox"]:checked + #deleteAllLabel::before {
+  content: "\2713";
+  color: var(--primary-color);
+  background-color: #fff;
 }
 
 .addTask {
-    width: 90%;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 3em;
-    background-color: rgba(255, 255, 255, .2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  height: 40px;
+  padding: 0 .5em;
+  margin-top: 0.5em;
+  margin-bottom: 3em;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .addTask > input {
-    width: 90%;
-    height: 100%;
-    border: 0;
-    outline: 0;
-    margin-right: 20px;
-    font-size: 1.5em;
-    padding: .5em;
-    text-align: center;
-    color: #FFF;
-    background-color: transparent;
+  width: 90%;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  text-align: center;
+  font-size: 1.2em;
+  color: #fff;
+  background-color: transparent;
 }
 
 button {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 0;
-    outline: 0;
-    object-fit: cover;
-    overflow: hidden;
-    background-color: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 button > img {
-    width: 50%;
-    height: 50%;
-    object-fit: contain;
+  width: 55%;
+  height: 55%;
+  object-fit: cover;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .task {
-    width: 90%;
-    height: max-content;;
-}
-.task > div{
-    background-color: #FFF;
-    width: 100%;
-    height: 65px;
-    display: flex;
-    /* flex-wrap: wrap; */
-    align-items: center;
-    padding: .5em;
-    font-size: 1.3em;
-    color: #000;
-    border-bottom: 0.1px solid #1C1C1C;
+  width: 90%;
 }
 
-.task > div > input {
-    /* width: 22px;
-    height: 22px;
-    outline: 0;
-    margin-right: .8em; */
-    display: none;
+.task > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  padding: 0 0.8em;
+  color: #000;
+  margin-bottom: 0.2em;
+  background-color: #fff;
 }
 
-input[type="checkbox"] + label:before {
-    content: "";
-    width: 5px;
-    height: 5px;
-    border: 1px solid #1C1C1C;
-    margin-right: 5px;
-    padding: .5em;
-    font-size: .6rem;  
-}
-
-input[type="checkbox"]:checked + label:before{
-    content: "\2713";
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--primary-color);
-    font-weight: 600;
+input[type="checkbox"] {
+  display: none;
 }
 
 label {
-    width: 90%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: .2em;
-    cursor: pointer;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
-.task > div > img {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
+input[type="checkbox"] + label:before {
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2px;
+  height: 2px;
+  padding: 0.5em;
+  border: 1px solid #1c1c1c;
+  margin-right: 5px;
+  font-size: 0.6rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+input[type="checkbox"]:checked + label:before {
+  content: "\2713";
+  background-color: var(--primary-color);
+}
+
+.task > div > img,
+#delete > img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  color: #fff;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .info {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    font-size: 1.1em;
-    padding: .3em;
-    text-align: center;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  text-align: center;
+  letter-spacing: 1px;
+  word-spacing: 5px;
+  margin-top: 0.8em;
 }
 
+@media (min-width: 650px) {
+  #delete,
+  .addTask,
+  .task,
+  .info {
+    width: 80%;
+  }
+  .addTask {
+    height: 60px;
+  }
 
-
-  /* @media (min-width: 600px) {
-    .container__title {
-        font-size: 3.5em;
-    }
-
-
-    .info {
-        font-size: 1.5em;
-    }
-
-    .addTask {
-       
-        height: 100px;
-        
-    }
-
-    .addTask > input {
-
-        font-size: 2.3em;
-       
-    }
-
-    button > img {
-        width: 60%;
-        height: 60%;
-    }
-
-    .task > div{
-        height: 115px;
-        font-size: 2em;
-    }
-
-    .task > div > img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .info {
-        font-size: 1.5em;
-  
-    }
-} */
+  .task > div {
+    height: 65px;
+  }
+}

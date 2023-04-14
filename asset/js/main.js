@@ -1,24 +1,26 @@
 let newTask = document.getElementById("newTask");
+let addTaskBtn = document.getElementById("addTaskBtn");
 let task = document.getElementById("task");
+let inputs = document.querySelectorAll("input[type='checkbox']");
+let deleteAll = document.getElementById("deleteAll");
 let text;
 let inputId = 0;
-let addTaskBtn = document.getElementById("addTaskBtn");
-let inputs = document.querySelectorAll("input[type='checkbox']");;
 let tasks = 0;
-//let pendingTasks = 0;
 let completedTasks = 0;
-addTaskBtn.addEventListener("click", validText);
 
-function validText() {
+function validateText() {
     text = newTask.value;
     if(text.trim().length > 0) {
         addTask();
     }
 }
+
+addTaskBtn.addEventListener("click", validateText);
+
+//Enter key
 newTask.addEventListener('keyup', (e) => {
-    
     if(e.code == 'Enter') {
-        validText();
+        validateText();
     }
 }
 );
@@ -31,32 +33,24 @@ function addTask() {
     inputId++;
     tasks++;
     infoTask();
+    if(tasks == 1) deleteAll.removeAttribute("disabled");
 }
 
 function infoTask() {
     let completedTasks = 0;
     inputs = document.querySelectorAll("input[type='checkbox']");
 
-    inputs.forEach(input => {
-        
-        if(input.checked) completedTasks++;
-    });
+    for(let i = 1; i < inputs.length; i++){
+        if(inputs[i].checked) completedTasks++;
+    }
 
     pendingTasks = tasks - completedTasks;
 
-    let infoParagraph = document.querySelectorAll(".info__paragraph");
     if(tasks != 0) {
-        infoParagraph[0].innerHTML = `Tareas: ${tasks}`;
-        infoParagraph[1].innerHTML = `Pendientes: ${pendingTasks}`;
-        infoParagraph[2].innerHTML = `Completas: ${completedTasks}`;
-        // console.log(inputs)
-       // console.log(tasks)
-        
+        let info = document.getElementById("info");
+        info.innerHTML = `Tasks:${tasks} Pending:${pendingTasks} Completed:${completedTasks}`;
     } else {
-        infoParagraph[0].innerHTML = "";
-        infoParagraph[1].innerHTML = "";
-        infoParagraph[2].innerHTML = "";
-
+        info.innerHTML = "";
     }
 }
 
@@ -64,9 +58,41 @@ function removeTask(event) {
     let elem = document.getElementById(event.target.id)
     task.removeChild(elem.parentNode); 
     tasks--;
-    console.log(tasks)
     infoTask();
 }
 
+ function markDeleteAll() {
+        for(let i = 1; i < inputs.length; i++){
+            if(!inputs[i].checked) inputs[i].checked = true;
+        } 
+}
+
+function uncheckAll() {
+    for(let i = 1; i < inputs.length; i++){
+        inputs[i].checked = false;
+     } 
+}
+
+function deleteAllTask() {
+    for(let i = 1; i < inputs.length; i++){
+        if(inputs[i].checked){
+            task.removeChild(inputs[i].parentElement);
+            tasks--;
+        }
+    }
+    infoTask();
+    deleteAll.checked = false;
+    if(tasks == 0) deleteAll.disabled = true;
+}
+
+
+deleteAll.addEventListener("click", () => {
+    if(deleteAll.checked){
+       markDeleteAll();
+    } else {
+       uncheckAll();
+    }
+
+});
 
 

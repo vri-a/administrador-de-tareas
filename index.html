@@ -4,28 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
+    <title>To do List</title>
     <link rel="stylesheet" href="./asset/css/style.css">
 </head>
 <body>
     <div class="container">
-        <p class="container__title">To do List</p>
-        <div class="addTask">
+        <h2 class="container__title">To do List</h2>
+        <section id="delete">
+            <input type="checkbox" id="deleteAll" disabled>
+            <label for="deleteAll" id="deleteAllLabel">Delete All</label>
+            <img src="https://img.icons8.com/windows/1x/trash.png" alt="" onclick="deleteAllTask()">
+        </section>
+        <section class="addTask">
             <input type="text" id="newTask">
             <button id="addTaskBtn"><img src="https://img.icons8.com/ios/1x/add.png" alt=""></button>
-        </div>
-        <div class="task" id="task">
-            <!-- <div>
-            <input type="checkbox" id="taskCheck">
-            <label for="taskCheck">Aprender HTML</label>
-            <img src="https://img.icons8.com/windows/1x/trash.png" alt="">
-        </div> -->
-        </div>
-        <div class="info">
-            <p class="info__paragraph"></p>
-            <p class="info__paragraph"></p>
-            <p class="info__paragraph"></p>
-        </div>
+        </section>
+        <section class="task" id="task">
+        </section>
+        <section class="info" id="info">
+        </section>
     </div>
     <script src="./asset/js/main.js"></script>
 </body>
