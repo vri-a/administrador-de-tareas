@@ -48,7 +48,7 @@ function infoTask() {
 
     if(tasks != 0) {
         let info = document.getElementById("info");
-        info.innerHTML = `Tasks:${tasks} Pending:${pendingTasks} Completed:${completedTasks}`;
+        info.innerHTML = `Tareas:${tasks} Pendientes:${pendingTasks} Completas:${completedTasks}`;
     } else {
         info.innerHTML = "";
     }
